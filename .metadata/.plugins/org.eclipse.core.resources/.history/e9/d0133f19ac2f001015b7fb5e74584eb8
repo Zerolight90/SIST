@@ -1,0 +1,43 @@
+package am;
+
+import java.util.Scanner;
+
+public class Ex2_Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		System.out.println("펫의 이름을 입력하세요 : ");
+		
+		Scanner scan = new Scanner(System.in);
+		String str = scan.nextLine();
+		int age = scan.nextInt();
+		
+
+		
+		//펫의 이름
+		Ex2_Pet p1 = new Ex2_Pet();
+		
+		String pn = p1.getName();
+		p1.setName(str);
+		System.out.println(p1.getName());
+		
+		
+		System.out.println("펫의 나이를 입력하세요 : ");
+		int age = scan.nextInt();
+		
+		//펫의 나이
+		Ex2_Pet p2 = new Ex2_Pet();
+		
+		int pa = p2.getAge();
+		p2.setAge(age);
+		System.out.println(p2.getAge());
+		
+		
+		
+		
+
+		
+
+	}
+
+}

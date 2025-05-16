@@ -1,0 +1,19 @@
+package am;
+
+public class Ex2_Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Ex2_Member[] m = new Ex2_Member[3]; //맴버가 3개가 아니라 null값이 3개가 만들어 진거다
+		
+		m[0] = new Ex2_Member();
+		m[1] = new Ex2_Member();
+		m[2] = new Ex2_Member();
+		
+		
+		
+		
+		
+	}
+
+}

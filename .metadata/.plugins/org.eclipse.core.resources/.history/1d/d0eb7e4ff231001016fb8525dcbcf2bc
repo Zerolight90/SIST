@@ -1,0 +1,65 @@
+package homework;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		
+		//이때 히사객체 생성
+		Company comp = new Company();
+		comp.init();
+		// Comany 클레스 comp라는 변수에 Company 클래스 inint함수를 호출했다
+		// 그안에서 한일은 Emp객체를 생성해서 arrayList에 저장하는 일을 했다.
+		
+		//
+		Scanner scan = new Scanner(System.in);
+		System.out.println("선택 :");
+		System.out.println("사번검색:1, 이름검색:2, 직책검색:3, 부서검색:4");
+		int cmd = scan.nextInt();
+		
+		String msg = null;
+		String str = null;
+		
+		//사용자가 입력한 코드(1,2,3,4)에 따라 분기문을 구현하자
+		
+		switch(cmd) {
+		
+			case 1 :
+				System.out.println("검색할 사번:");
+				str = scan.next();
+				msg = comp.searchEmp(cmd, str);
+				break;
+				
+			case 2 :
+				System.out.println("검색할 이름:");
+				str = scan.next();
+				msg = comp.searchEmp(cmd, str);
+				break;
+				
+			case 3 :
+				System.out.println("검색할 직책:");
+				str = scan.next();
+				msg = comp.searchEmp(cmd, str);
+				break;
+				
+			case 4 :
+				System.out.println("검색할 부서:");
+				str = scan.next();
+				msg = comp.searchEmp(cmd, str);
+				break;
+			
+			default :
+				msg = "잘 못 입력하셨습니다.";
+				
+		}//switch의 끝
+		if(msg.trim().length()<1) {
+			System.out.println("검색된 정보가 없습니다.");
+		} else {
+			System.out.println(msg);
+		}
+
+	}
+
+}

@@ -1,0 +1,14 @@
+package pm;
+
+import java.util.HashMap;
+
+public class Ex5_Map {
+
+	public static void main(String[] args) {
+		// Map구조 : 키와 값을 하나의 쌍으로 저장하는 구조
+		// key들을 중복불가!!!
+		
+		HashMap<Integer, String> map = new HashMap<Integer, String>();
+	}
+
+}

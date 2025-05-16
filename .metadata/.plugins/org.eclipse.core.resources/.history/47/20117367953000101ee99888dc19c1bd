@@ -1,0 +1,17 @@
+package pm;
+
+public class Ex4_Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Ex4_Vending vd = new Ex4_Vending();
+		vd.setAr(); //자판기에 저장된 음료 4개 정보 생성
+		
+		System.out.println("SIST자판기");
+		System.out.println("=====================");
+		System.out.println(vd[]);
+
+	}
+
+}

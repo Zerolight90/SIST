@@ -1,0 +1,15 @@
+package am;
+
+public class Ex1_Array {
+
+	public static void main(String[] args) {
+		//객체자료형 배열을 생성하자
+		String[] ar = new String[3];
+		ar[0] = "100";
+		ar[1] = "222";
+		ar[2] = "300";
+		
+
+	} // 메인 종료
+
+} //클래스 종료

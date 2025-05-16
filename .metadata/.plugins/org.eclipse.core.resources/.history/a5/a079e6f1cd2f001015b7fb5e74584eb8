@@ -1,0 +1,41 @@
+package pm;
+
+public class Ex6_Baseball {
+	
+	int[] com = new int [3];
+	int[] user = new int [3];
+	int strike_count = 0; // 이 변수가 3이될 때 프로그램 종료!
+	int ball_count = 0;
+	int cnt = 0;// 시도한 회차수
+	
+	
+	
+	public int[] getCom() {
+		return com;
+	}
+
+
+
+	public void setCom(int[] com) {
+		this.com = com;
+	}
+
+
+
+	public void init() {
+		for (int i = 0; i < com.length;) {
+			com[i] = (int) (Math.random() * 9 + 1);
+			boolean chk = true;
+			for (int j = 0; j < i; j++) {
+				if (com[i] == com[j]) {
+					chk = false;
+					break;
+				}
+			}//안쪽 for문 종료
+			if (chk)
+				++i;
+		}//바깥쪽 for문 종료
+		
+	}//init종료
+
+}//클레스 종료

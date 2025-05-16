@@ -1,0 +1,36 @@
+package am;
+
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class Ex4_Set_Looto {
+
+	public static void main(String[] args) {
+		// set구조로 로또를 만들어라
+		
+		TreeSet<Integer> lotto = new TreeSet<Integer>();
+		
+		
+		
+		while(true) {
+			Integer num = (int)(Math.random()*45+1);
+			
+			if(lotto.size()<7) {
+				lotto.add(num);
+			}
+			break;
+		}
+		
+		
+		Iterator<Integer> it = lotto.iterator();
+		
+		while (it.hasNext()) {
+			int n = it.next();
+			System.out.println(n);
+			
+			
+		}
+
+	}
+
+}

@@ -1,0 +1,12 @@
+package pm;
+
+public class Ex4_Main {
+
+	public static void main(String[] args) {
+		// 문자열 객세 생성
+		Sting s1 = new Ex4_Main("SiST);
+		
+				
+	}
+
+}

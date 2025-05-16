@@ -1,0 +1,62 @@
+package alonest;
+
+import java.util.Scanner;
+
+public class baeball {
+
+	public static void main(String[] args) {
+		// 야구 게임 만들기
+		
+		int[] com = new int [3]; //컴퓨터 숫자
+		int[] user = new int [3]; //유저가 입력하는 수
+		
+		int strike = 0; // 스트라이크 카운터
+		int ball = 0; // 볼카운터
+		int cnt = 0; //횟수
+		
+		//컴퓨터의 렘던숫자 3개 생성
+		for(int i = 0; i<com.length;) {
+			com[i] = (int)(Math.random()*9+1);
+			boolean chk = true;
+			
+			for (int j = 0; j < i; j++) {
+				if (com[i] == com[j]) {
+					chk = false;
+					break;
+				}
+			}
+			if (chk)
+				++i;
+			
+		}
+		Scanner scan = new Scanner(System.in);
+		
+		do {
+			//do while 초기 설정
+			strike = 0;
+			ball = 0;
+			++cnt;
+			
+			//키보드로 부터 n차 : 수받기
+			System.out.println(cnt+"차 : ");
+			String str = scan.nextLine();
+			
+			//유저가 입력한 숫자를 user배열에 넣기
+			for(int i=0; i<str.length(); i++) {
+				char ch = str.charAt(i); // 유저가 입력한수는 int타입이 아닌 스트링 타입으로 
+				user[i]=ch-48;   		 // charat으로 한글자씩 뺴서 user배열에 넣는다
+				
+			}
+			
+			
+			
+			
+			
+		}
+		while(strike !=3);
+		
+		
+
+	}
+
+}

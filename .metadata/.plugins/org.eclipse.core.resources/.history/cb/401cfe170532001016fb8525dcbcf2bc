@@ -1,0 +1,12 @@
+package am;
+
+public class Ex4_Set_Looto {
+
+	public static void main(String[] args) {
+		// set구조로 로또를 만들어라
+		
+		
+
+	}
+
+}

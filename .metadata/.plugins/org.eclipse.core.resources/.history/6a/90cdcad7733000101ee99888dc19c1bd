@@ -1,0 +1,11 @@
+package am;
+
+public class Ex3_Book {
+	// 도서번호, 도서명 출판사, 책위치
+	
+	private String b_num, title, pub, pos;
+	private boolean rent;
+	
+	
+
+}

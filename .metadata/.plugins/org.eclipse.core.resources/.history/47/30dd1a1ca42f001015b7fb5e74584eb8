@@ -1,0 +1,24 @@
+package am;
+
+import java.util.Scanner;
+
+public class Ex2_Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		
+		// 키보드로 부터 문자열 받는다.
+		System.out.println("입력: ");
+		Scanner scan = new Scanner(System.in);
+		String str = scan.nextLine();
+		
+		//Ex1_Color 라는 객체가 필요하다고 가정하자
+		
+		Ex1_Color c1 = new Ex1_Color();
+		
+		//생성된 객체가 가지는 Color라는 변수를 출력하자
+		System.out.println(c1.color); //null
+
+	}
+
+}

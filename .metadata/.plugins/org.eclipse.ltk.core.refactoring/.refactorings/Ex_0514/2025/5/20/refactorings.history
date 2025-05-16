@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;am.Ex3_Libary&apos; to &apos;Ex3_Library&apos;&#x0D;&#x0A;- Original project: &apos;Ex_0514&apos;&#x0D;&#x0A;- Original element: &apos;am.Ex3_Libary&apos;&#x0D;&#x0A;- Renamed element: &apos;am.Ex3_Library&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Ex3_Libary&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;am{Ex3_Libary.java[Ex3_Libary" matchStrategy="1" name="Ex3_Library" qualified="false" references="true" similarDeclarations="false" stamp="1747193552813" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,23 @@
+package homework;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		
+		//이때 히사객체 생성
+		Company comp = new Company();
+		
+		comp.init();
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("선택 :");
+		System.out.println("사번검색:1, 이름검색:2, 직책검색:3, 부서검색:4");
+		int cmd = scan.nextInt();
+		
+
+	}
+
+}

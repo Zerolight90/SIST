@@ -1,0 +1,6 @@
+package pm;
+
+public class Ex6_Emp {
+	private String empno, name, dept; //사번, 이름, 부서
+	
+}

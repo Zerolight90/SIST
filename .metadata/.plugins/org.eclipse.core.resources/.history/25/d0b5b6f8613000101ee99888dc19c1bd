@@ -1,0 +1,40 @@
+package pm;
+
+import java.util.Scanner;
+
+public class Ex6_Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		// 숫자 야구 게임을 하기 위한 객체(Ex6_Baseball) 준비
+		Ex6_Baseball bb = new Ex6_Baseball();
+		//컴퓨터가 가지는 수를 설정하자!
+		bb.init(); // 함수호출
+		String msg = bb.getCom();
+		System.out.printf("com: %s\r\n", msg);
+		System.out.printf("==============");
+
+		// 키보드로 부터 값을 받기 위해 스캐너 준비
+		Scanner scanner = new Scanner(System.in);
+		//int s1 = 0; // public int countStrike 여기로 반환
+		//int b1 = 0;// public int countBall 여기로 반환
+		int cnt = 0;
+
+		do {
+			++cnt;
+			System.out.println(cnt + "차:");
+			String str = scanner.nextLine();
+			bb.setUser(str); // 함수 호출 후 str.scanner를 통해 숫자를 받아 반한한다.
+			int s1 = bb.countStrike(); // public int countStrike 여기로 반환
+			int b1 = bb.countBall(); // public int countBall 여기로 반환
+			
+			// bb.countBall(); // public int countBall 여기로 반환
+			System.out.printf("%dStrike, %dBall\r\n", bb.strike_count, bb.ball_count);
+		}
+
+		while (s1 != bb.com.length);
+
+		System.out.println(cnt + "회차에 성공!");
+
+	}
+}

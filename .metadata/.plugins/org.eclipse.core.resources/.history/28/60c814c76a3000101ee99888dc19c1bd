@@ -1,0 +1,24 @@
+package am;
+
+public class Ex2_Member {
+	// 필요한 정보들을 맴버필드로 선언한다.
+	String name;
+	String num;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+}

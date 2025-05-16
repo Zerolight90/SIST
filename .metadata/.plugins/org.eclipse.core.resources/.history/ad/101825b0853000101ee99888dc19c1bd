@@ -1,0 +1,12 @@
+package am;
+
+public class Ex3_Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Ex3_Book book= new Ex3_Book();
+		
+
+	}
+
+}

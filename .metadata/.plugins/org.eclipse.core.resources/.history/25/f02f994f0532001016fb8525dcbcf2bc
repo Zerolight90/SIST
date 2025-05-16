@@ -1,0 +1,16 @@
+package am;
+
+import java.util.TreeSet;
+
+public class Ex4_Set_Looto {
+
+	public static void main(String[] args) {
+		// set구조로 로또를 만들어라
+		
+		TreeSet<Integer> num = new TreeSet<Integer>();
+		num = (Integer)(Math.random()*45+1);
+		
+
+	}
+
+}

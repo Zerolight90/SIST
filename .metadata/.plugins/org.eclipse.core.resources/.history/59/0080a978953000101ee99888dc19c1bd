@@ -1,0 +1,36 @@
+package pm;
+
+public class Ex4_Vending {
+	
+	//음료수 배열 저장
+	Ex4_Drink[] ar = new Ex4_Drink[4];
+	
+	//음료 종류 : 레쓰비, 사이다, 콜라, 웰치스
+	//자판기에 음료 저장
+	public void setar() {
+		ar[0] = new Ex4_Drink();
+		ar[0].setNum(1);
+		ar[0].setDrink_name(".레스비");
+		ar[0].setPrice(500);
+		
+		ar[1] = new Ex4_Drink();
+		ar[1].setNum(2);
+		ar[1].setDrink_name(".사이다");
+		ar[1].setPrice(700);
+		
+		ar[2] = new Ex4_Drink();
+		ar[2].setNum(3);
+		ar[2].setDrink_name(".콜라");
+		ar[2].setPrice(700);
+		
+		ar[3] = new Ex4_Drink();
+		ar[3].setNum(4);
+		ar[3].setDrink_name(".웰치스");
+		ar[3].setPrice(1000);
+	}
+	
+	
+	//음료 선택
+	
+	
+}

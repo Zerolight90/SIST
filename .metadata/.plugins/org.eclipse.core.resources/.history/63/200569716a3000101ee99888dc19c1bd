@@ -1,0 +1,8 @@
+package am;
+
+public class Ex2_Member {
+	String name = "";
+	int num = "";
+	
+
+}

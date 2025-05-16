@@ -1,0 +1,14 @@
+package homework;
+
+public class Vending { //자판기
+	
+	//현 자판기는 내부에는 음료가 4개 가져야 한다.
+	Drink[] ar = new Drink[4];
+	
+	public void init() {
+		//배열에 음료객체 4개를 생성하여 초기화 하는 동작(함수 == 메서드)
+		Drink d1 = new Drink();
+		
+	}
+
+}

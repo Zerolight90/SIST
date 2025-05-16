@@ -1,0 +1,29 @@
+package am;
+
+public class Ex2_Pet {
+	
+	private String name; //이름
+	private int age;
+	
+	//펫 이름 영역
+	public void setName(String petname) {
+		name = petname;
+		
+	}
+	
+	public String getName() {
+		return name; //private String name으로 반환
+	}
+	
+	
+	//펫 나이 영역
+	public void setAge(int petage) {
+		age = petage;
+	}
+	
+	public int getAge() {
+		return age; // private int age로 반환
+	}
+	
+
+}
