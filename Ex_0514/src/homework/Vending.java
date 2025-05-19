@@ -48,11 +48,11 @@ public class Vending { //자판기
 		}//for문의 끝
 		
 		//마지막에 존재하는 ","를 삭제한다
-		int idx = sb.lastIndexOf("|"); // 마지막 ","의 위치값을 찾아준다.
+		int idx = sb.lastIndexOf("|"); // 마지막 "|"의 위치값을 찾아준다.
 		String str = "";
 		
 		if(idx != -1) {
-			str = sb.substring(0, idx);
+			str = sb.substring(0, idx); //스트링값 변경
 			
 			return str;
 		}

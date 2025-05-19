@@ -1,6 +1,9 @@
 package homework;
 
+
 import java.util.Scanner;
+
+
 
 public class Main {
 
@@ -26,7 +29,9 @@ public class Main {
 		
 		Drink d = vd.getDrink(num);
 		System.out.printf("선택한 음료는 : %s, 잔돈 : %d원 입니다." ,d.getName(), coin-d.getPrice());
+			
 		
 	}
 
+	
 }
