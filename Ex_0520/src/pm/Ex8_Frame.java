@@ -62,7 +62,9 @@ public class Ex8_Frame extends JFrame implements ActionListener {
 						sb.append("x");
 						sb.append(k);
 						sb.append("=");
-						sb.append(j*k);
+						sb.append((i+2)*k);
+						sb.append("\r\n");
+					
 						
 						cen_ta.append(sb.toString());
 						}
