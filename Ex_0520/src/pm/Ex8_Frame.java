@@ -37,6 +37,7 @@ public class Ex8_Frame extends JFrame implements ActionListener {
 		this.setBounds(500, 200, 720, 480);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 	}// 기본 생성자 끝
 
@@ -49,28 +50,31 @@ public class Ex8_Frame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object obj = e.getSource();
-		
+
 		for (int i = 0; i < btn.length; i++) {
-			int  j= i + 2;
+			int j = i + 2;
 
+			if (obj == btn[i]) {
+
+				StringBuffer sb = new StringBuffer();
+				
 				for (int k = 1; k <= 9; k++) {
-					if (obj == btn[i]) {
-						StringBuffer sb = new StringBuffer();
-						sb.append(j);
-						sb.append("단\r\n");
-						sb.append(j);
-						sb.append("x");
-						sb.append(k);
-						sb.append("=");
-						sb.append((i+2)*k);
-						sb.append("\r\n");
-					
-						
-						cen_ta.append(sb.toString());
-						}
-				} // 구구단 계산 for문
 
-			 // 구구단 조건문
+					sb.append(j);
+					sb.append("단\r\n");
+					sb.append(j);
+					sb.append(" x ");
+					sb.append(k);
+					sb.append(" = ");
+					sb.append(j * k);
+					sb.append("\r\n");
+
+				}
+				cen_ta.setText(sb.toString());
+				
+			} // 구구단 계산 for문
+
+			// 구구단 조건문
 		}
 
 	}
