@@ -33,6 +33,7 @@ public class Ex9_Member extends JFrame implements ActionListener{
 		bt3 = new JButton("검색");
 		bt4 = new JButton("삭제");
 		bt5 = new JButton("취소");
+		
 		ja = new JTextArea();
 		jl1 = new JLabel("사번");
 		jl2 = new JLabel("이름");
@@ -47,7 +48,7 @@ public class Ex9_Member extends JFrame implements ActionListener{
 		
 		//사번 이름 등등
 		
-		gl2 = new GridLayout(4,2,5,5);
+		gl2 = new GridLayout(6,2,20,20);
 		Eest_P.setLayout(gl2);
 		Eest_P.add(jl1);
 		Eest_P.add(tf1);
@@ -62,7 +63,7 @@ public class Ex9_Member extends JFrame implements ActionListener{
 		
 		
 		//밑에 버튼
-		gl1 = new GridLayout(1,5, 10, 20);
+		gl1 = new GridLayout(2,5,30,10);
 		fl = new FlowLayout(FlowLayout.RIGHT);
 		South_P.setLayout(fl);
 		South_P.add(bt1);

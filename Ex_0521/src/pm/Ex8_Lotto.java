@@ -31,6 +31,7 @@ public class Ex8_Lotto extends JFrame implements ActionListener {
 		north_P = new JPanel(flow);
 		north_P.add(btn = new JButton("번호생성"));
 		this.add(north_P, BorderLayout.NORTH);
+		
 		grid = new GridLayout(1, 6);
 		center_P = new JPanel(grid);
 		this.add(center_P);
@@ -48,7 +49,7 @@ public class Ex8_Lotto extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		center_P.removeAll();
+		center_P.removeAll(); //새로 생성될때 마다 초기화
 		
 		ts.clear();
 		
