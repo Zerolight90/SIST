@@ -39,6 +39,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\My_Study\Java_Study\Work\SIST\Ex_0523\src\homework"/>
 			<item value="C:\Users\쌍용교육센터\git\SIST"/>
 		</list>
 	</section>

@@ -75,9 +75,15 @@ public class Ex7_Tset extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				Image buf = createImage(this.getWidth(), this.getHeight());
+				
+				int red = (int) (Math.random() * 256);
+				int green = (int) (Math.random() * 256);
+				int blue = (int) (Math.random() * 256);
+				Color c = new Color(red, green, blue);
 
 				Graphics buf_g = buf.getGraphics();// 이미지에 그리는 전용 붓
-				buf_g.setColor(Color.ORANGE);
+				buf_g.setColor(c);
+//				buf_g.setColor(Color c = new Color(red, green, blue);
 
 				buf_g.fillRect(x, y, 50, 50);// 이미지에 그림을 그림
 
@@ -121,7 +127,7 @@ public class Ex7_Tset extends JFrame {
 						cmd = left;
 						break;
 					}
-					break;
+					break; //무한반복문 탈출
 				}
 
 			}
