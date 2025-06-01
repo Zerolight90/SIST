@@ -1,6 +1,6 @@
 package pm;
 
-import java.awt.BorderLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -29,7 +29,7 @@ public class Ex7_Frame extends JFrame {
 	// 파일 처리를 위한 객체들
 	File f;
 	BufferedInputStream bis;
-	FileInputStream fis;
+	
 
 	JList<String> list;
 
@@ -64,7 +64,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// 종료하기 전에 해야할 일이 있으면 이쯤에서 해야함!
-
+				closed();
 				System.exit(0);
 			}
 
@@ -75,7 +75,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 종료하기 전에 해야할 일이 있으면 이쯤에서 해야함!
-
+				closed();
 				System.exit(0);
 
 			}
@@ -95,34 +95,41 @@ public class Ex7_Frame extends JFrame {
 					f =jfc.getSelectedFile();
 					
 					//위에서 받은 파일을 가지고 존재여부 확인 
-					if(f.exists() && f.isDirectory()) {
+					if(f.exists()) {
 						String[] ar = f.list();
 						
 						//받은 배열을 JList에 출력하자
-						list.setListData(ar);
+//						list.setListData(ar);
 						
-					}//if문 끝	
+					//if문 끝	
 					
 					//스트림과 f를 연동
+							
 					try {
-						fis = new FileInputStream(f);
-						bis = new BufferedInputStream(fis);
+//						fis = new FileInputStream(f);
+						//위 코드를 아래와 같이 쓸 수 있다.
+						bis = new BufferedInputStream(new FileInputStream(f));
 
 						int size = -1;
 						byte[] buf = new byte[2048]; // 여기서 배열이 매우 중요하다.
-
+						StringBuffer sb = new StringBuffer();
 						while ((size = bis.read(buf)) != -1) {
 							String str = new String(buf, 0, size);
-							ta.setText(str);
+							
+							sb.append(str);
 							
 						} // while종료
+						
+						//표현할 모든 데이터는 sb가 가지고 있다.
+						ta.setText(sb.toString());
+						ta.setCaretPosition(0); //화면을 맨 위로 이동시킨다.
 						
 					} catch (Exception e2) {
 						e2.printStackTrace();
 						System.out.println("오류 오류 비상 비상");
 					}finally {
 						try {
-							fis.close();
+							
 							bis.close();
 						} catch (IOException e2) {
 
@@ -133,9 +140,24 @@ public class Ex7_Frame extends JFrame {
 					
 				}
 			}
+			}
 		});
 
 	}// 생성자의 끝
+	
+	
+	private void closed() {
+		
+		try {
+			if(bis != null) {
+				bis.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
 
 	public static void main(String[] args) {
 		// 프로그램 시작

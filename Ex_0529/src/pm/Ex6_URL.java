@@ -1,0 +1,115 @@
+package pm;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.net.URL;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Ex6_URL extends JFrame {
+
+	JPanel center_p;
+	JTextField url_tf;
+	JButton down_bt;
+
+	// 파일 처리를 위한 스트림 객체들
+	BufferedInputStream bis;
+	BufferedOutputStream bos;
+
+	public Ex6_URL() {
+		center_p = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		center_p.add(new JLabel("URL : "));
+		center_p.add(url_tf = new JTextField(60));
+		center_p.add(down_bt = new JButton("다운로드"));
+
+		this.add(center_p);
+
+		this.setBounds(300, 100, 800, 150);
+		this.setVisible(true);
+
+		// 이벤트 감기자
+		this.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+
+		});
+		down_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// [다운로드]버튼을 클릭할 때만 수행하는 곳
+				JFileChooser jfc = new JFileChooser("c:/my_study");
+
+				// 파일명만 얻어 내기 위해 url_tf에 있는 문자열을 가져온다.
+				String url_path = url_tf.getText().trim();
+
+				// 가장 뒤에 있는 "/"의 위치값을 알아내자
+				int idx = url_path.lastIndexOf("/");
+				// 위에서 얻어낸 마지막 "/" 위치 값을 가지고 파일명만 얻어 낸다.
+
+				String fname = url_path.substring(idx + 1);
+
+				// 추출한 파일명은 파일선택기에 지정한다.
+				jfc.setSelectedFile(new File(fname));
+
+				int cmd = jfc.showSaveDialog(Ex6_URL.this);
+				if (cmd == JFileChooser.APPROVE_OPTION) {
+					// 저장 버튼을 클릭한 경우에는 사용자가 반드시 파일을 선택한 경우다.
+					File f = jfc.getSelectedFile();
+
+					try {
+						URL url = new URL(url_path); // 웹상의 경로가 객체가 됐다
+
+						// 웹 상에 존재하는 이미지 경로와 연결된 스트림 생성
+						bis = new BufferedInputStream(url.openStream());
+
+						// 웹상의 이미지를 저장할 파일과 연결하는 스트림
+						bos = new BufferedOutputStream(new FileOutputStream(f));
+
+						// 읽은 수를 저장할 변수가 필요
+						int size = -1;
+						// 바구니 역활을 할 byte[] 필요
+						byte[] buf = new byte[1024 * 8];
+
+						while ((size = bis.read(buf)) != -1) { // 반복문 size가 반복해서 돌면서 -1이 됐을떄 반복문 종료
+
+							bos.write(buf, 0, size);
+							bos.flush();
+						} // while문 끝
+						JOptionPane.showMessageDialog(Ex6_URL.this, "저장완료");
+
+					} catch (Exception e2) {
+						// TODO: handle exception
+					}
+				}
+			}
+		});
+		
+		
+
+	}// 기본생성자
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		new Ex6_URL();
+
+	}
+
+}
