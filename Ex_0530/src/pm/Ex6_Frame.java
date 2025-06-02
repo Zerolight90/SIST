@@ -45,11 +45,12 @@ public class Ex6_Frame extends JFrame {
 	// 파일로부터 자원을 읽기 위한 스트림
 	ObjectInputStream br;
 	ObjectOutputStream pw;
-	File selectedFile;
+	String path = new String();
 
 	public Ex6_Frame() {
 		// 화면 가운데에 ta를 생성하여 스크롤바에 추가하여 넣는다.
 		add(new JScrollPane(table = new JTable(new DefaultTableModel(null, c_name))));
+		path = new String("C:/My_Study/test/abcd.txt");
 
 		// 메뉴 작업
 		new_item = new JMenuItem("새파일");
@@ -75,12 +76,15 @@ public class Ex6_Frame extends JFrame {
 
 		setBounds(300, 100, 500, 500);
 		setVisible(true);
+		
+		readFile();
 
 		// 이벤트 감지자 등록
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				saveFile();
 				closed();
 
 			}
@@ -101,6 +105,7 @@ public class Ex6_Frame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				readFile();
+				JOptionPane.showMessageDialog(Ex6_Frame.this, "불러오기 완료");
 			}
 		}); // 열기 이벤트 종료
 
@@ -115,7 +120,7 @@ public class Ex6_Frame extends JFrame {
 				// 존재해도 파일을 덮어 쓰기에 승인한 경우
 
 				saveFile();
-
+				JOptionPane.showMessageDialog(Ex6_Frame.this, "저장완료");
 			}
 
 		});// 저장 이벤트 종료
@@ -124,19 +129,23 @@ public class Ex6_Frame extends JFrame {
 
 	private void saveFile() {
 
-		ObjectOutputStream oos = null;
+//		ObjectOutputStream oos = null;
 
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(new File("c:/my_study/test/abcd.txt")));
-			oos.writeObject(e_list); // 객체 쓰기 (저장)
-			oos.flush();
+			pw = new ObjectOutputStream(new FileOutputStream(new File(path)));
+			pw.writeObject(e_list);
+			pw.flush();
+
+//			oos = new ObjectOutputStream(new FileOutputStream(new File("c:/my_study/test/abcd.txt")));
+//			oos.writeObject(e_list); // 객체 쓰기 (저장)
+//			oos.flush();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (oos != null)
-					oos.close();
+				if (pw != null)
+					pw.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
@@ -146,26 +155,27 @@ public class Ex6_Frame extends JFrame {
 
 	private void readFile() {
 
-		ObjectInputStream ois = null;
 		try {
-			ois = new ObjectInputStream(new FileInputStream(new File("c:/my_study/test/abcd.txt")));
-
-			Object obj = ois.readObject(); // 객체 읽기
-			e_list = (ArrayList<Ex6_emp>) obj; // 저장 당시의 자료형으로 형변환 시켰다.
+			br = new ObjectInputStream(new FileInputStream(new File(path)));
+			Object obj = br.readObject();
+			if(obj != null) {
+				
+				e_list = (ArrayList<Ex6_emp>) obj; // 저장 당시의 자료형으로 형변환 시켰다.
+			}
+			viewTable();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		} finally {
 			try {
-				if (ois != null) {
-					ois.close();
+				if (br != null) {
+					br.close();
 				}
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
 		}
-		viewTable();
 
 	}
 
