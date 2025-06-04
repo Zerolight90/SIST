@@ -149,7 +149,7 @@ public class Ex3_Chat extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String msg = msg_F.getText().trim(); // 입력된 메시지 가져오기 (앞뒤 공백 제거)
 				Ex3_Protocol p = new Ex3_Protocol();
-				p.cmd = 2; // ★★★ 중요: 프로토콜 명령을 2 (채팅 메시지)로 설정
+				p.cmd = 2; //  ★★★ 중요: 프로토콜 명령을 2로 설정
 				p.msg = msg; // 사용자가 입력한 메시지 설정
 
 				try {
@@ -195,7 +195,7 @@ public class Ex3_Chat extends JFrame implements ActionListener {
 
 				try {
 					// 접속!!!
-					s = new Socket("192.168.10.107", 5555);
+					s = new Socket("192.168.10.119", 5555);
 
 					// 나의 복사본(Ex3_CopyClient)이 서버에 숨어 들어 갔다.
 					// 복사본과 통신하기 위해 스트림 생성하자!

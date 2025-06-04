@@ -8,6 +8,9 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="192"/>
+			<item value="room"/>
+			<item value="로그인"/>
 			<item value=""/>
 		</list>
 		<list key="replacehistory">

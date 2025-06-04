@@ -1,0 +1,102 @@
+package pm;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class ChatServer {
+
+	ServerSocket ss;
+
+	Thread thread = new Thread() {
+
+		@Override
+		public void run() {
+
+			// 접속자가 발생할 때까지 기다리다가
+			// 접속자가 오면 CopyClient로 생성한 후 ArrayList에 저장한다. 그리고CopyClient의 스레드를 구동시킨다.
+
+			while (true) {
+
+				try {
+					Socket s = ss.accept(); // 접속자가 발생할 때까지 대기한다.
+
+					CopyClient cc = new CopyClient(s, ChatServer.this);
+
+					// ChatServer의 주소를 전달하는 이유
+					// chatServer에 있는 함수들을 호출하기 위해
+					u_list.add(cc);
+					cc.start();// 클라이언트와 통신하는 스레드 구동!!!
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+
+			} // 무한반복 종료
+
+		}
+
+	};
+
+	ArrayList<CopyClient> u_list; // 접속한 대기자들
+//	ArrayList<ChatRoom> r_list; //방 목록
+
+	public  ChatServer() {
+
+		try {
+			ss = new ServerSocket(5555);
+			System.out.println("서버 시작");
+			u_list = new ArrayList<>(); // 접속자들이 저장될 곳
+
+			thread.start();// 접속자들을 맞이하는 스레드 시작!
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void revomeClient(CopyClient cc) {
+		u_list.remove(cc);
+
+	}
+
+	// 대기자 모두에게 전달하는 기능
+	public void sendProtocol(Protocol p) {
+		for (int i = 0; i < u_list.size(); i++) {
+			CopyClient cc = u_list.get(i);
+
+			try {
+				cc.out.writeObject(p);
+				cc.out.flush();
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	//대기실 명단을 수집하여 반환하는 기능
+	public String[] getNames() {
+		//ArrayList에 있는 요소들에게 이름을 받아서 배열화 시킨다.
+		String[] names = new String[u_list.size()];
+		
+		for(int i =0; i<names.length; i++) {
+			//클라이언트의 복사본을 하나씩 얻어낸다.
+			CopyClient cc = u_list.get(i);
+			names[i] = cc.getNickName();
+			
+		}
+		return names;
+		
+	}
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		new ChatServer();
+
+	}
+
+}
