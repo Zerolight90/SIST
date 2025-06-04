@@ -78,6 +78,20 @@ public class ChatFrame extends javax.swing.JFrame {
     		@Override
     		public void windowClosing(WindowEvent e) {
     			//종료
+    			Protocol p = new Protocol();
+    			p.setCmd(3);
+    			try {
+					out.writeObject(p);
+					out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    			
+    			
+    			
+    			
+    			
     			System.exit(0);
     		}
 
@@ -129,6 +143,18 @@ public class ChatFrame extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Protocol p = new Protocol();
+    			p.setCmd(3);
+    			try {
+					out.writeObject(p);
+					out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    			
+				
+				
 				System.exit(0);
 				
 			}
