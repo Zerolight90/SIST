@@ -46,14 +46,27 @@ public class CopyClient extends Thread {
 					//protocol의 cmd값이 뭐냐에 따라 작업의 구분을 구현한다.
 					switch(protocol.getCmd()) {
 					case 3 :
+						//서버의 ArryList에서 현재객체를 삭제한다.
+//						
+						server.revomeClient(this);
+						Protocol p2 = new Protocol();
+						p2.cmd = 3;
+						//명단 수집
+						p2.setUser_names(server.getNames());
+						
+						server.sendProtocol(p2); 
+						
 						//원격의 클라이언트가 있는 스레드를 소멸시키기 위해 메세지를 보내온 것
 						out.writeObject(protocol);
+						out.flush();
 						break bk;
 						
 					case 1:
 						//서버에 접속한 경우는
 						//사용자가 입력한 대화명을 얻어내어 nickName에 저장한다.
 						this.nickName = protocol.getMsg();
+						
+						
 						
 						//환영메세지를 보내기 위해 Protocol 객체 생성
 						Protocol p = new Protocol();
@@ -92,9 +105,7 @@ public class CopyClient extends Thread {
 				s.close();
 			}
 			
-			//서버의 ArryList에서 현재객체를 삭제한다.
-//			
-			server.revomeClient(this);
+	
 			
 			//서버에 다른 접속자들에게 현객객체가 접속해제한다는 메세지를 보낸다.
 			Protocol p = new Protocol();

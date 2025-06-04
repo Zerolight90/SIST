@@ -51,8 +51,8 @@ public class ChatFrame extends javax.swing.JFrame {
 							break;
 					
 						case 3:
-							out.writeObject(p);
-							out.flush();
+							
+							break bk;
 							
 					
 					}//스위치 끝
