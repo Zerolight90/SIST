@@ -1,0 +1,17 @@
+package pm;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class Ex5_Frame extends JFrame {
+	
+	//현재 창에 보여질 것들은 모두 맴버변수로 선언하자!
+	
+	private JButton bt1, bt2, bt3;
+
+	public static void main(String[] args) {
+		// 프로그램시작
+		Ex5_Frame f = new Ex5_Frame();
+	}
+
+}

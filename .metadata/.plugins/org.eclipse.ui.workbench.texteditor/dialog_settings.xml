@@ -6,8 +6,18 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="나가기"/>
 		<list key="findhistory">
+			<item value="나가기"/>
+			<item value="119"/>
+			<item value="99"/>
+			<item value="생성자"/>
+			<item value="채팅 "/>
+			<item value="채팅방"/>
+			<item value="ChatFr"/>
+			<item value="swit"/>
+			<item value="swith"/>
+			<item value="sw"/>
 			<item value="192"/>
 			<item value="room"/>
 			<item value="로그인"/>

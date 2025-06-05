@@ -1,0 +1,14 @@
+package pm;
+
+import java.io.Serializable;
+
+public class Protocol implements Serializable {
+
+	int cmd; //1 접속 2 채팅 3 종료 4 방만들기 5방나가기 
+	
+	String msg;
+	
+	String[] user_names; //대기자 명단
+
+	
+}

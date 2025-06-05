@@ -1,0 +1,16 @@
+package pm;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Ex6_addDialog extends JDialog {
+
+	Ex6_Frame f;
+
+	JTextField empno_tf, ename_tf, pos_tf, hdate_tf, deptno_tf;
+	JPanel p1, p2, p3, p4, p5, p6;
+	JButton ok_bt, cancel_bt;
+
+}

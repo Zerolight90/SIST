@@ -1,0 +1,64 @@
+package pm;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Ex6_URL extends JFrame {
+
+	JPanel center_p;
+	JTextField url_tf;
+	JButton down_bt;
+	
+	public Ex6_URL() {
+		center_p = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		center_p.add(new JLabel("URL : "));
+		center_p.add(url_tf=new JTextField(60));
+		center_p.add(down_bt = new JButton("다운로드"));
+		
+		this.add(center_p);
+		
+		
+		this.setBounds(300,100,800,150);
+		this.setVisible(true);
+		
+		//이벤트 감기자
+		this.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+			
+			
+		});
+		down_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// [다운로드]버튼을 클릭할 때만 수행하는 곳
+				JFileChooser jfc = new JFileChooser("c:/my_study");
+				int cmd = jfc.showSaveDialog(Ex6_URL.this);
+				
+			}
+		});
+		
+		
+	}//기본생성자
+	
+	public static void main(String[] args) {
+		//프로그램 시작
+		new Ex6_URL();
+
+	}
+
+}

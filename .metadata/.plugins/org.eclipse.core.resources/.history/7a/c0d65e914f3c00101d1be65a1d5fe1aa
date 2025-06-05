@@ -1,0 +1,16 @@
+package pm;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Ex6_URL extends JFrame {
+
+	JPanel center_p, south_p;
+	
+	public static void main(String[] args) {
+		//프로그램 시작
+		new Ex6_URL();
+
+	}
+
+}

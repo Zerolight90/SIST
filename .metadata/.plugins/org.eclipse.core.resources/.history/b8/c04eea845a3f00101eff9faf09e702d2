@@ -1,0 +1,13 @@
+package am;
+
+import java.net.ServerSocket;
+
+public class Ex2_Server {
+
+	public static void main(String[] args) {
+		//서버 준비
+		ServerSocket ss = new ServerSocket(5555);
+
+	}
+
+}

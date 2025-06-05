@@ -1,0 +1,20 @@
+package pm;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Ex6_URL extends JFrame {
+
+	JPanel center_p;
+	JTextField url_tf;
+	JButton down_bt;
+	
+	public static void main(String[] args) {
+		//프로그램 시작
+		new Ex6_URL();
+
+	}
+
+}

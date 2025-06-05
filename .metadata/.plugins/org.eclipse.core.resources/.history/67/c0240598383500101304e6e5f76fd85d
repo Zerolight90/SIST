@@ -1,0 +1,12 @@
+package pm;
+
+import javax.swing.JFrame;
+
+public class Ex4_Frame extends JFrame {
+
+	public static void main(String[] args) {
+		// 프로그램 시작 
+		Ex4_Frame f = new Ex4_Frame();
+	}
+
+}

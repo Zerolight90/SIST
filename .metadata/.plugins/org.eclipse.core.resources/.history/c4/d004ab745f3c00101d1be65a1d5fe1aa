@@ -1,0 +1,32 @@
+package pm;
+
+import java.io.File;
+
+public class Ex8_File_info {
+
+	public static void main(String[] args) {
+		// 폴더의 경로
+		String path = "c:/my_study/test/util";
+		
+		
+		File f = new File(path);
+		
+		if(f.isDirectory()) {
+			//디렉토리 일 경우에만 수행하도록 한다.
+			File[] sub = f.listFiles();
+			
+			String[] c_name = {"파일명","수정일","용량"};
+			
+			String[][] ar = new String[sub.length][c_name.length];
+			for(int i=0; i<sub.length; i++) {
+				
+				for(int j=0; j<c_name.length; j++) {
+					
+				}//c_name for문 종료
+			}//sub for문 종료
+			
+		}
+
+	}
+
+}

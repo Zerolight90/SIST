@@ -1,0 +1,16 @@
+package am;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class Ex2_Server {
+
+	public static void main(String[] args) throws IOException {
+		//서버 준비
+		ServerSocket ss = new ServerSocket(5555);
+		System.out.println("servar start : " + ss.getLocalPort());
+		
+
+	}
+
+}

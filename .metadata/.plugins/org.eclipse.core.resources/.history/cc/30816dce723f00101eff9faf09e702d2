@@ -1,0 +1,14 @@
+package pm;
+
+import java.net.ServerSocket;
+import java.util.ArrayList;
+
+public class Ex3_ChatServer {
+	//서버는 반드시 ServerSocket이 있어야 한다.
+	ServerSocket ss;
+	
+	ArrayList<Ex3_CopyClient> list;
+	
+	
+
+}

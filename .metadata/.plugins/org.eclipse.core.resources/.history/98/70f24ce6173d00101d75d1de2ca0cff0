@@ -1,0 +1,26 @@
+package pm;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+public class Ex4_Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		//객체들을 저장할 파일의 경로
+
+		String path = "c:/my_study/test/abcd.txt";
+		
+		//객체를 저장하기 위해 필요한 스트림
+		ObjectOutputStream oos = null;
+		
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
+		
+	}
+
+}

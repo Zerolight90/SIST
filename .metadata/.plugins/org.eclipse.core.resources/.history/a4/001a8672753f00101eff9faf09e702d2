@@ -1,0 +1,9 @@
+package pm;
+
+import java.io.Serializable;
+
+public class Ex3_Protocol implements Serializable {
+
+	int cmd; //1 : 접속 2 : 채팅메세지 보내기 3. 접속 종료
+}
+

@@ -1,0 +1,14 @@
+package am;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class Ex1_Sever {
+
+	public static void main(String[] args) throws IOException { 
+		//서버는 접속을 받기 위해 반드시 ServerSocket이 있어야 한다.
+		ServerSocket ss = new ServerSocket(5555);
+		System.out.println("Server Started :" + ss.getLocalPort());
+	}
+
+}

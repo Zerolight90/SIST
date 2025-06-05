@@ -1,0 +1,9 @@
+package pm;
+
+import java.util.ArrayList;
+
+public class ChatRoom {
+
+		ArrayList<CopyClient> ru_list; //방에 참여한 사용자들
+	
+}

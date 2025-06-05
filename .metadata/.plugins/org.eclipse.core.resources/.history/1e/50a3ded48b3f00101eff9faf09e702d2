@@ -1,0 +1,210 @@
+package pm;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Ex3_Chat extends JFrame implements ActionListener {
+
+	ImageIcon icon;
+	JLabel icon_lb;
+	JPanel card1, card2;
+	JPanel p1_south_p, s_p1, s_p2, p2_south_p;
+	JTextField talkname, msg_F;
+	JButton login_btn, send_btn;
+	JTextArea ta;
+
+	CardLayout card;
+
+	Socket s;
+	ObjectOutputStream out;
+	ObjectInputStream in;
+
+	// 서버로 부터 전달되어 오는 프로토콜을 받는 스레드
+	Thread t = new Thread() {
+
+		@Override
+		public void run() {
+			// 항상 in.readObject를 수행해야 한다.
+			bk: while (true) {
+
+				try {
+					Object obj = in.readObject();
+					if (obj != null) {
+						Ex3_Protocol protocol = (Ex3_Protocol) obj;
+						switch (protocol.cmd) {
+						case 2:
+							ta.append(protocol.getMsg()); // 프로토콜이 가지고 있는 msg를 찍어주세요
+							ta.append("\r\n");
+							break;
+						case 3:
+							break bk;
+
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			} // 무한반복 종료
+			try {
+				if (in != null) {
+					in.close();
+				}
+				if (out != null)
+					out.close();
+				if (s != null)
+					s.close();
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
+	};
+
+	public Ex3_Chat() {
+		// 현재 창의 레이아웃을 CardLayout으로 지정
+		card = new CardLayout();
+		this.getContentPane().setLayout(card);
+
+		// 첫번쨰 화면 작업
+		card1 = new JPanel(new BorderLayout());
+		icon = new ImageIcon("src/images/logo.png");
+		Image img = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+		icon_lb = new JLabel(new ImageIcon(img));
+		card1.add(icon_lb); // 첫번쨰 화면 가운데에 이미지 표현
+		s_p1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		s_p1.add(new JLabel("대화명 :"));
+		s_p1.add(talkname = new JTextField(8));
+		s_p2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		s_p2.add(login_btn = new JButton("    로그인    "));
+
+		p1_south_p = new JPanel(new GridLayout(2, 1));
+		p1_south_p.add(s_p1);
+		p1_south_p.add(s_p2);
+
+		card1.add(p1_south_p, BorderLayout.SOUTH);
+
+		this.getContentPane().add("card1", card1);
+
+		// 두번쨰 화면
+		card2 = new JPanel(new BorderLayout());
+		card2.add(new JScrollPane(ta = new JTextArea()));
+		p2_south_p = new JPanel(new BorderLayout());
+		p2_south_p.add(msg_F = new JTextField());
+		p2_south_p.add(send_btn = new JButton("보내기"), BorderLayout.EAST);
+		card2.add(p2_south_p, BorderLayout.SOUTH);
+		this.getContentPane().add("card2", card2);
+
+//		card.show(this.getContentPane(), "card2");
+
+		// 화면 셋팅
+		setBounds(300, 100, 400, 500);
+		setVisible(true);
+
+		// 이벤트 감시자
+		this.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (s == null)
+					System.exit(0);
+				else {
+					// 프로토콜생성, cmd에 3저장 후 서버로 프로토콜 전송
+					Ex3_Protocol p = new Ex3_Protocol();
+					p.cmd = 3;
+					try {
+						out.writeObject(p); // 접속 해제를 위한 트로토콜 보내기
+
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		});
+		login_btn.addActionListener(this);
+		send_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Ex3_Protocol p = new Ex3_Protocol();
+				p.cmd = 2;
+				try {
+					out.writeObject(p);
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+				
+			}
+		});
+		
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Ex3_Chat();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object obj = e.getSource();
+		if (obj == login_btn) {
+			// 로그인 버튼을 클릭 했을때
+
+			// 사용자가 입력한 대화명 가져오기
+			String n = talkname.getText().trim();
+			if (n.length() > 0) {
+
+				try {
+					// 접속!!!
+					s = new Socket("192.168.10.119", 5555);
+
+					// 나의 복사본(Ex3_CopyClient)이 서버에 숨어 들어 갔다.
+					// 복사본과 통신하기 위해 스트림 생성하자!
+
+					out = new ObjectOutputStream(s.getOutputStream());
+					in = new ObjectInputStream(s.getInputStream());
+
+					// in을 계속 계속 read하는 스레드 구동 시켜야 한다.
+					Ex3_Protocol p = new Ex3_Protocol();
+					p.cmd = 1;
+					p.msg = n; // 대화명
+
+					out.writeObject(p); // 서버로 보내기
+
+					card.show(this.getContentPane(), "card2");
+					t.start();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				// 대화명을 한자라도 입력한 경우
+			} else {
+				JOptionPane.showMessageDialog(this, "대화명을 입력하세요");
+			}
+		}
+
+	}
+
+}

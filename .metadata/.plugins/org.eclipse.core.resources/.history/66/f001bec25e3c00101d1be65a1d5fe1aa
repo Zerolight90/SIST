@@ -1,0 +1,11 @@
+package pm;
+
+public class Ex8_File_info {
+
+	public static void main(String[] args) {
+		// 폴더의 경로
+		String path = "c:/my_study";
+
+	}
+
+}

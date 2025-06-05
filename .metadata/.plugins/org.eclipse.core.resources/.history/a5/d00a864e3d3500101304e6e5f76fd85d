@@ -1,0 +1,14 @@
+package pm;
+
+import javax.swing.JFrame;
+
+public class Ex5_Frame extends JFrame {
+	
+	public Ex5_Frame f = new Ex5_Frame();
+
+	public static void main(String[] args) {
+		// 프로그램시작
+
+	}
+
+}

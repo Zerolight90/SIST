@@ -1,0 +1,51 @@
+package pm;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.ArrayList;
+
+public class ChatServer {
+
+	ServerSocket ss;
+	
+	Thread thread = new Thread(){
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			super.run();
+		}
+		
+		
+	};
+	
+	ArrayList<CopyClient> u_list; //접속한 대기자들
+//	ArrayList<ChatRoom> r_list; //방 목록
+	
+	public void revomeClient(CopyClient cc) {
+		u_list.remove(cc);
+		
+	}
+	
+	// 대기자 모두에게 전달하는 기능
+	public void sendProtocol(Protocol p) {
+		for(int i =0; i<u_list.size(); i++) {
+			CopyClient cc =u_list.get(i);
+			
+			try {
+				cc.out.writeObject(p);
+				cc.out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		// 프로그램 시작
+		new ChatServer();
+
+	}
+
+}

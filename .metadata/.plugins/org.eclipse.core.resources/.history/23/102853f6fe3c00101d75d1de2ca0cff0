@@ -1,0 +1,14 @@
+package am;
+
+import java.io.PrintWriter;
+
+public class Ex3_Writer {
+
+	public static void main(String[] args) {
+		//문자기반의 출력스트림
+		
+		PrintWriter pw = new PrintWriter("c:/my_study/test/123.txt);
+
+	}
+
+}

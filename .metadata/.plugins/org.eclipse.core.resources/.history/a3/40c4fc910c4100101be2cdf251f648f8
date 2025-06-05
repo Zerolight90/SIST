@@ -1,0 +1,30 @@
+package pm;
+
+import java.net.ServerSocket;
+import java.util.ArrayList;
+
+public class ChatServer {
+
+	ServerSocket ss;
+	
+	Thread thread = new Thread(){
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			super.run();
+		}
+		
+		
+	};
+	
+	ArrayList<CopyClient> u_list;
+	
+	
+	public static void main(String[] args) {
+		// 프로그램 시작
+		new ChatServer();
+
+	}
+
+}

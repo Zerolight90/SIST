@@ -1,0 +1,12 @@
+package pm;
+
+public class Ex4_Main {
+
+	public static void main(String[] args) {
+		// 프로그램 시작
+		//객체들을 저장할 파일의 경로
+
+		String path ="c:/my_study/tes/abc.txt"
+	}
+
+}

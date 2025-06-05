@@ -1,0 +1,13 @@
+package am;
+
+import java.io.InputStream;
+
+public class Ex1_Reader {
+
+	public static void main(String[] args) {
+		// 키보드와 연결된 스트림
+		InputStream key = System.in;
+
+	}
+
+}

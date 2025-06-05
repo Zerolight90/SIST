@@ -1,0 +1,143 @@
+package am;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Ex2_reader extends JFrame {
+
+	JTextArea ta;
+	
+	JMenuBar bar;
+	JMenu file_menu;
+	JMenuItem new_item, open_item, save_item, exit_item;
+	
+	//파일로부터 자원을 읽기 위한 스트림
+	BufferedReader br;
+	File selectedFile;
+	
+	public Ex2_reader() {
+		//화면 가운데에 ta를 생성하여 스크롤바에 추가하여 넣는다.
+		add(new JScrollPane(ta = new JTextArea()));
+		
+		// 메뉴 작업
+		new_item = new JMenuItem("새파일");
+		open_item = new JMenuItem("오픈...", new ImageIcon("src/images/fold_img.png"));
+		save_item = new JMenuItem("저장", new ImageIcon("src/images/save_img.png"));
+		exit_item = new JMenuItem("종료");
+		// ====================
+		
+		file_menu = new JMenu("파일");
+		file_menu.add(new_item);
+		file_menu.add(open_item);
+		file_menu.add(save_item);
+		file_menu.addSeparator(); // 밑줄(구분선) 추가
+		file_menu.add(exit_item);
+
+		bar = new JMenuBar();
+		bar.add(file_menu);
+
+		// 메뉴바를 현재창에 추가
+		this.setJMenuBar(bar);
+		
+		
+		setBounds(300,100,500,500);
+		setVisible(true);
+		
+		
+		//이벤트 감지자 등록
+		this.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				closed();
+			
+			}
+			
+			
+		}); // 닫기 이벤트 종료
+		
+		
+		open_item.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			//열기 버튼을 눌렀을때만 반응하는곳
+				JFileChooser jfc = new JFileChooser("c:/my_study");
+				int cmd = jfc.showOpenDialog(Ex2_reader.this);//파일 선택기 보여주기
+				//사용자가 [열기]를 선택 했다면, cmd에는 JFileChooser.APPROVE_OPTION인 0값이 저장된다.
+				
+				if(cmd == JFileChooser.APPROVE_OPTION) {
+					//이때 선택된 파일을 얻어내야 한다. 맴버변수인 selectedFile에 저장
+					selectedFile = jfc.getSelectedFile();
+					
+					readFile();
+					
+				}
+				
+			}
+		}); //열기 이벤트 종료
+		
+		
+	 }//기본 생성자 종료
+	
+	
+	private void readFile() {
+		
+		if(selectedFile != null) {
+			//선택된 파일이 있으면 스트림을 생성할 수 있다.
+			try {
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile)));
+				StringBuffer sb = new StringBuffer();
+				String str = null;
+				
+				while((str = br.readLine()) != null) {
+					sb.append(str);
+					
+				}//while종료
+				ta.setText(sb.toString());
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	private void closed() {
+		//사용되는 스트림이 있다면 먼저 닫아야 한다.
+		try {
+			if(br != null) {
+				br.close(); // 스트림 닫기
+				
+			}
+		} catch (Exception e) {}
+		System.exit(0); //프로그램 종료
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		//프로그램 시작
+		new Ex2_reader();
+
+	}
+
+}

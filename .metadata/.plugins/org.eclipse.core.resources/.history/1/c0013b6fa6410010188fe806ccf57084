@@ -1,0 +1,32 @@
+package pm;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class ChatRoom {
+
+		ArrayList<CopyClient> ru_list; //방에 참여한 사용자들
+		String room_name;
+		
+		public void sendMsg(Protocol p) {
+			for (int i = 0; i < ru_list.size(); i++) {
+				CopyClient cc = ru_list.get(i);
+
+				for(CopyClient:ru_list) {
+					
+				}
+				
+					
+					
+				try {
+					cc.out.writeObject(p);
+					cc.out.flush();
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+}
